@@ -61,7 +61,7 @@ export const {
   useGetSignagePointsQuery,
   useGetPoolStateQuery,
   useSetPayoutInstructionsMutation,
-  useGetFarmingInfoQuery,
+  useGetNewFarmingInfoQuery,
 } = farmer;
 
 // full node hooks
@@ -205,6 +205,7 @@ export const {
   useGetPlotDirectoriesQuery,
   useAddPlotDirectoryMutation,
   useRemovePlotDirectoryMutation,
+  useGetFarmingInfoQuery,
 } = harvester;
 
 // plotter hooks
