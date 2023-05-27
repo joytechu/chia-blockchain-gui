@@ -7,7 +7,7 @@ import Block from '../block/Block';
 import DashboardSideBar from '../dashboard/DashboardSideBar';
 import Farm from '../farm/Farm';
 import FullNode from '../fullNode/FullNode';
-import Harvester from '../harvester/Harvester';
+import Harvest from '../harvest/Harvest';
 import NFTs from '../nfts/NFTs';
 import { CreateOffer } from '../offers/OfferManager';
 import Plot from '../plot/Plot';
@@ -66,7 +66,7 @@ export default function AppRouter() {
               <Route path="dashboard/offers/*" element={<CreateOffer />} />
               <Route path="dashboard/nfts/*" element={<NFTs />} />
               <Route path="dashboard/settings/*" element={<Settings />} />
-              <Route path="dashboard/harvester/*" element={<Harvester />} />
+              <Route path="dashboard/harvest/*" element={<Harvest />} />
               <Route path="dashboard/plot/*" element={<Plot />} />
               <Route path="dashboard/farm/*" element={<Farm />} />
               <Route path="dashboard/pool/*" element={<Pool />} />

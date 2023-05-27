@@ -1,7 +1,8 @@
 import { Flex, SideBarItem } from '@chia-network/core';
 import {
-  Farming as FarmingIcon,
+  Farm as FarmIcon,
   FullNode as FullNodeIcon,
+  Harvest as HarvestIcon,
   Plots as PlotsIcon,
   Pooling as PoolingIcon,
   NFTs as NFTsIcon,
@@ -78,16 +79,22 @@ export default function DashboardSideBar(props: DashboardSideBarProps) {
               end
             />
             <SideBarItem
-              to="/dashboard/harvester"
-              icon={PlotsIcon /* @TODO Replace with valid icon */}
-              title={<Trans>Harvester</Trans>}
-              data-testid="DashboardSideBar-harvester"
+              to="/dashboard/farm"
+              icon={FarmIcon}
+              title={<Trans>Farm</Trans>}
+              data-testid="DashboardSideBar-farming"
             />
             <SideBarItem
               to="/dashboard/plot"
               icon={PlotsIcon}
               title={<Trans>Plots</Trans>}
               data-testid="DashboardSideBar-plots"
+            />
+            <SideBarItem
+              to="/dashboard/harvest"
+              icon={HarvestIcon}
+              title={<Trans>Harvest</Trans>}
+              data-testid="DashboardSideBar-harvest"
             />
             {/* }
             <SideBarItem
@@ -96,13 +103,6 @@ export default function DashboardSideBar(props: DashboardSideBarProps) {
               title={<Trans>Wallets</Trans>}
             />
             */}
-
-            <SideBarItem
-              to="/dashboard/farm"
-              icon={FarmingIcon}
-              title={<Trans>Farming</Trans>}
-              data-testid="DashboardSideBar-farming"
-            />
             <SideBarItem
               to="/dashboard/pool"
               icon={PoolingIcon}
