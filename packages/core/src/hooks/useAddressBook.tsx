@@ -1,3 +1,6 @@
+import fs from 'fs';
+
+import { dump, load } from 'js-yaml';
 import { useState, useEffect } from 'react';
 
 export default function useAddressBook(): [
@@ -17,20 +20,26 @@ export default function useAddressBook(): [
 ] {
   // editContact
   const [addressBook, setAddressBook] = useState<IAddressContact[]>([]);
-  const LOCAL_STORAGE_KEY = 'addressbook';
-  const contactBookJSON = JSON.stringify(addressBook);
+
+  // hard coded because getUserDataDir() is in gui package
+  const ADDRESS_BOOK_PATH = '/Users/kev/.chia/mainnet/config/addressbook.yaml';
+  const contactBookYaml = dump(addressBook);
   useEffect(() => {
-    if (localStorage.getItem(LOCAL_STORAGE_KEY) === undefined || localStorage.getItem(LOCAL_STORAGE_KEY) === null) {
+    if (!fs.existsSync(ADDRESS_BOOK_PATH)) {
       setAddressBook([]);
     } else {
-      const addresses: IAddressContact[] = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
+      const yamlData = fs.readFileSync(ADDRESS_BOOK_PATH, 'utf-8');
+      const addresses = load(yamlData) as IAddressContact[];
       setAddressBook([...addresses]);
     }
   }, []);
 
   useEffect(() => {
-    if (addressBook !== undefined) localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(addressBook));
-  }, [contactBookJSON, addressBook]);
+    if (addressBook !== undefined) {
+      const yaml = dump(addressBook);
+      fs.writeFileSync(ADDRESS_BOOK_PATH, yaml);
+    }
+  }, [contactBookYaml, addressBook]);
 
   function getNewContactId(): number {
     if (addressBook.length === 0 || addressBook === undefined) return 1;
@@ -61,7 +70,8 @@ export default function useAddressBook(): [
 
   function removeContact(contactId: number) {
     const filteredContacts = addressBook.filter((contact) => contact.contactid !== contactId);
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(filteredContacts));
+    const yaml = dump(filteredContacts);
+    fs.writeFileSync(ADDRESS_BOOK_PATH, yaml);
     setAddressBook([...filteredContacts]);
   }
 

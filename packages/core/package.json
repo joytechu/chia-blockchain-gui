@@ -50,7 +50,8 @@
     "react-use-timeout": "1.0.0",
     "sortablejs": "1.15.0",
     "stacktrace-gps": "3.0.4",
-    "stacktrace-js": "2.0.2"
+    "stacktrace-js": "2.0.2",
+    "js-yaml": "4.1.0"
   },
   "devDependencies": {
     "@babel/core": "7.21.0",
